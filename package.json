@@ -1,0 +1,30 @@
+{
+  "name": "malranks",
+  "version": "1.0.0",
+  "description": "Node App that retrieves top ten currently airing anime and displays",
+  "main": "app.js",
+  "scripts": {
+    "start": "node bin/www",
+    "dev": "nodemon bin/www"
+  },
+  "keywords": [
+    "anime",
+    "mal",
+    "node",
+    "api",
+    "top",
+    "ten",
+    "airing",
+    "seasonal",
+    "anime",
+    "MAL"
+  ],
+  "author": "Wides",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0"
+  }
+}

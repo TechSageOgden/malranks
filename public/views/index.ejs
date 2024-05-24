@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta
+      htpp-equiv="X-UA-Compatible"
+      content="ie=edge"
+    />
+    <meta
+      name="description"
+      content="Small site showing the current top ten anime according to MAL Rankings"
+    />
+    <meta
+      name="author"
+      content="Wides🎸"
+    />
+    <meta
+      name="keywords"
+      content="My Anime List, MAL, rankings, anime, currently airing, seasonal anime"
+    />
+    <meta
+      name="robots"
+      content="index, follow"
+    />
+    <title><%= title %></title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+    />
+    <link type="stylesheet" rel="stylesheet" href="style.css">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<body class="bg-dark p-2">
+    <!--  NavBar component  -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            ~ MAL Rankings ~
+          </a>
+        </div>
+      </nav>
+      <h1 class="mt-2 text-center text-warning">Current Anime Rankings on <a href="https://myanimelist.net/">My Anime List</a></h1>
+      <!-- List Group displaying anime listings -->
+      
+      <div id="list-display" class="d-flex justify-content-center mt-5">
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    
+      
+
+      <footer class="mt-3">
+        <h5 class="text-center text-white"><small>&copy; 2024 <em>Wides🎸</em></small></h5>
+      </footer>
+
+      <div style="display: none;" id="slug"><%= data %></div>
+
+      <script>
+        let listData
+        const displayBlock = document.getElementById('list-display')
+
+        let slug = document.getElementById('slug').innerText
+        let url = `/slug=${slug}`
+
+        async function dataRequest(url) {
+            let data = await fetch(url)
+            let results = await data.json()
+            listData = results.data.data
+            console.log(listData)
+
+            // Output to the screen
+            displayBlock.innerHTML = ''
+            let color = 'dark'
+            listData.map((item, index) => {
+              
+                displayBlock.innerHTML += `
+                <div class="card" style="width: 25rem; height: 30rem;">
+                  <img src="${item.node.main_picture.medium}" class="card-img-top" alt="${item.node.title} MAL Picture">
+                  <div class="card-body">
+                    <h5 class="card-title">${index + 1}. ${item.node.title}</h5>
+                    
+                  </div>
+                </div>
+                `
+            })
+        }
+
+        dataRequest(url)
+      </script>
+</body>
+</html>

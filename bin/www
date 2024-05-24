@@ -1,0 +1,104 @@
+#!/usr/bin/env node
+
+/**
+ * Description - Module Dependencies
+ * @author Micheal Ogden - WidesVs2
+ * @date 2023-08-31
+ * @param {any} "dotenv"
+ * @param {any} "app"
+ * @param {any} "debug"
+ * @param {any} "http"
+ * @returns {any}
+ */
+const dotenv = require("dotenv");
+const app = require("../app");
+const debug = require("debug")(`${process.env.APP_NAME}:server`);
+const http = require("node:http");
+
+dotenv.config();
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || "5000");
+app.set("port", port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+
+/**
+ * Description - Normailize a port into a number, string, or false.
+ * @author Micheal Ogden - WidesVs2
+ * @date 2023-08-31
+ * @param {any} val - number || string || false
+ * @returns {any} val: number - The port number || port: number - the port number || false: Boolean - false
+ */
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Description
+ * @author Micheal Ogden - WidesVs2
+ * @date 2023-08-31
+ * @param {any} error - error
+ * @returns {any} error: any - error
+ */
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+
+  const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Description - Event listener for HTTP server "listening" event.
+ * @author Micheal Ogden - WidesVs2
+ * @date 2023-08-31
+ * @returns {any} void
+ */
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
+  console.log(`Server started on port: ${port}`);
+}

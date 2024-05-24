@@ -1,0 +1,36 @@
+MAL RANKS Project
+
+This project will send a request the MAL API and recieve the top ten anime currently airing. This
+project will be slightly more complex than previous projects in this level due to API keys and
+my desire for better UI/UX and cleaner design.
+
+API Endpoint :: https://api.myanimelist.net/v2/anime/ranking?ranking_type=airing&limit=10
+
+Required Header 
+    X-MAL-CLIENT-ID = SECRET_ID
+
+After review of options and implementations, moving to a node app......deploying to cyclic
+
+NEEDS
+    env var for API_SECRET
+    express server -
+        View endpoints
+        API Requests endpoints
+    Server-Side-rendering
+    SPA???-technically that's all I need, but I'll avoid frameworks here other than express
+    View Engine -
+        EJS most familiar
+        NAV component - 
+            branding only
+        DISPLAY component -
+            craft custom images to enhance hero unit as border
+            list titles in a banner format {
+                title,
+                studio,
+                rank,
+                rating,
+                image,
+            } @link to MAL page per title
+        FOOTER component -
+            copyright credit
+        
