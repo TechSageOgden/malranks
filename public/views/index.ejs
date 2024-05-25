@@ -44,7 +44,7 @@
     <!--  NavBar component  -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
             ~ MAL Rankings ~
           </a>
         </div>
@@ -52,7 +52,7 @@
       <h1 class="mt-2 text-center text-warning">Current Top Ten on <a href="https://myanimelist.net/">My Anime List</a></h1>
       <!-- List Group displaying anime listings -->
       
-      <div id="list-display" class="d-flex justify-content-center mt-5">
+      <div id="list-display" class="d-flex flex-column flex-lg-row justify-content-center mt-5">
         <div class="spinner-border text-success" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -64,6 +64,7 @@
         <h5 class="text-center text-white"><small>&copy; 2024 <em>Wides🎸</em></small></h5>
       </footer>
 
+      <!-- BAD PRACTICE, but.... I NEEDED IT OK! -->
       <div style="display: none;" id="slug"><%= data %></div>
 
       <script>
@@ -84,8 +85,8 @@
             listData.map((item, index) => {
               
                 displayBlock.innerHTML += `
-                <div class="card" style="width: 25rem; height: 30rem;">
-                  <img src="${item.node.main_picture.medium}" class="card-img-top" alt="${item.node.title} MAL Picture">
+                <div class="card" style="width: 25rem; height: 65vh;">
+                  <img style="max-width: 25vw; max-height: 25;" src="${item.node.main_picture.medium}" class="card-img-top" alt="${item.node.title} MAL Picture">
                   <div class="card-body">
                     <h5 class="card-title">${index + 1}. ${item.node.title}</h5>
                     
