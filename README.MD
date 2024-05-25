@@ -35,5 +35,4 @@ designer, lol. So yeah, that made it simpler to get stuff going and I like the b
 
 ## Live On Render
 
-This app is currently running on a free instance from Render @ <https://malranks.onrender.com> It spins down due to inactivity, so when you first visit
-it may take up to 50s to spin up.
+This app is currently running on a small instance from Render @ <https://malranks.onrender.com> Feel free to go check it out!
