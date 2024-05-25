@@ -32,3 +32,8 @@ on top of the typical vanilla javascript, html, css I was using prior. First, No
 systems a lot in the past so this was the easiest thing for me to do. Also, I decided to use Bootstrap to glue the frontend design together. I'm not
 a designer and Ive done A LOT of css writing the last few days experimenting with the other projects looks and feels...seriously guys, I'm not a
 designer, lol. So yeah, that made it simpler to get stuff going and I like the basic look now, so, meh?
+
+## Live On Render
+
+This app is currently running on a free instance from Render @ <https://malranks.onrender.com> It spins down due to inactivity, so when you first visit
+it may take up to 50s to spin up.
